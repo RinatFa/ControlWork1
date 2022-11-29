@@ -8,15 +8,15 @@
 // ["1234", "1567", "-2", "computer science"] -> ["-2"]
 // ["Russia", "Denmark", "Kazan"] -> []
 
-string PrintArray1(string[] fB){
+string PrintArray1(string[] fsArray){
     string sStr = "[";
-    for (int i = 0; i < fB.GetLength(0); i++){
-        if (fB[i] != string.Empty){
+    for (int i = 0; i < fsArray.GetLength(0); i++){
+        if (fsArray[i] != string.Empty){
             if (sStr.Length > 1){
-                sStr += ", " + fB[i];
+                sStr += ", " + fsArray[i];
             }
             else{
-                sStr += fB[i];
+                sStr += fsArray[i];
             }
         }
     }
@@ -24,16 +24,16 @@ string PrintArray1(string[] fB){
     return sStr;
 }
 
-string PrintArray2(string[] fB, int iC){
+string PrintArray2(string[] fsArray, int iCountSymb){
     string sStr = "[";
-    for (int i = 0; i < fB.GetLength(0); i++){
-        if (fB[i] != string.Empty){
-            if (fB[i].Length <= iC + 2){
+    for (int i = 0; i < fsArray.GetLength(0); i++){
+        if (fsArray[i] != string.Empty){
+            if (fsArray[i].Length <= iCountSymb + 2){
                 if (sStr.Length > 1){
-                    sStr += ", " + fB[i];
+                    sStr += ", " + fsArray[i];
                 }
                 else{
-                    sStr += fB[i];
+                    sStr += fsArray[i];
                 }
             }
         }
@@ -43,12 +43,12 @@ string PrintArray2(string[] fB, int iC){
 }
 
 int VerifyN(){
-    int temp;          //Проверка на ввод числа!
+    int iTemp;          //Проверка на ввод числа!
     var vNumb = " ";
-    while (int.TryParse(vNumb, out temp) == false){
+    while (int.TryParse(vNumb, out iTemp) == false){
         Console.Write("Введите число 0 для заданного массива или > 0  для ввода с клавиатуры = ");
         vNumb = Console.ReadLine();
-        if (int.TryParse(vNumb, out temp) == false){
+        if (int.TryParse(vNumb, out iTemp) == false){
             Console.WriteLine("Введите число!");
         }
     }
@@ -58,45 +58,45 @@ int VerifyN(){
 string[] InputArray(){
     Console.WriteLine("Введите строки (остановка ввода: пустая строка): ");
     int iCount = 0;        
-    string[] fB = new string[iCount];
-    string[] fB2;          
+    string[] fsArray = new string[iCount];
+    string[] fsArrayNew;          
     string sStr = "a";
     while (sStr != ""){
         sStr = Console.ReadLine()!;
         if (sStr != ""){
             iCount++;
-            fB2 = new string[iCount];
-            for (int i = 0; i < fB2.Length - 1; i++){
-                fB2[i] = fB[i];
+            fsArrayNew = new string[iCount];
+            for (int i = 0; i < fsArrayNew.Length - 1; i++){
+                fsArrayNew[i] = fsArray[i];
             }
-            fB2[iCount - 1] = "\"" + sStr + "\"";
-            fB = fB2;
+            fsArrayNew[iCount - 1] = "\"" + sStr + "\"";
+            fsArray = fsArrayNew;
         }
     }
-    return fB;
+    return fsArray;
 }
 
 // 1. ввод значений
-long fN = 10;
-string[] fA = new string[fN];
-for (int i = 0; i < fA.GetLength(0); i++){
-    fA[i] = string.Empty;
+long lNumber = 10;
+string[] sArray = new string[lNumber];
+for (int i = 0; i < sArray.GetLength(0); i++){
+    sArray[i] = string.Empty;
 }
-int iN = VerifyN();
-if (iN == 0){
-    fA[0] = "\"1\"";
-    fA[1] = "\"-2\"";
-    fA[2] = "\"123\"";
-    fA[3] = "\"edr4\"";
-    fA[4] = "\"tute34235\"";
+int iNumb = VerifyN();
+if (iNumb == 0){
+    sArray[0] = "\"1\"";
+    sArray[1] = "\"-2\"";
+    sArray[2] = "\"123\"";
+    sArray[3] = "\"edr4\"";
+    sArray[4] = "\"tute34235\"";
 }
 else{
-    fA = InputArray();
+    sArray = InputArray();
 }
 // 2. вычисление
-string sStr1 = PrintArray1(fA);
+string sStr1 = PrintArray1(sArray);
 int iCount = 3;
-string sStr2 = PrintArray2(fA, iCount);
+string sStr2 = PrintArray2(sArray, iCount);
 // 3. печать результата
 Console.Write(sStr1 + " -> ");
 Console.WriteLine(sStr2);
